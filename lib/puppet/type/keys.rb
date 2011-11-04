@@ -4,7 +4,7 @@ Puppet::Type.newtype(:keys) do
     ensurable
 
     newparam(:name) do
-       desc "The name of the key managed"
+       desc "The name of the key being managed"
 
        isnamevar
 

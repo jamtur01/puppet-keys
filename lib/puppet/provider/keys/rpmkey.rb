@@ -6,15 +6,14 @@ Puppet::Type.type(:keys).provide(:rpmkey) do
     defaultfor :operatingsystem => [:redhat, :fedora, :centos, :oel, :ovm]
 
     def create
-        rpm "--import", resources[:name]
+      rpm "--import", "/etc/pki/rpm-gpg/#{resources[:name]}"
     end
 
     def destroy
-        rpm "-e", resource[:name]
+      File.rm_fr("/etc/pki/rpm-gpg/#{resources[:name]}")
     end
 
     def exists?
-        rpm "-qa", "gpg-pubkey*"
-        rpm "-qi", resource[:name]
+      File.exists?("/etc/pki/rpm-gpg/#{resources[:name]}")
     end
 end

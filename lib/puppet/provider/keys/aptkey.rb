@@ -6,14 +6,14 @@ Puppet::Type.type(:keys).provide(:aptkey) do
     defaultfor :operatingsystem => [:debian, :ubuntu]
 
     def create
-        aptkey :add resources[:name]
+      aptkey :add resources[:name]
     end
 
     def destroy
-        aptkey :del resource[:name]
+      aptkey :del resource[:name]
     end
 
     def exists?
-        aptkey :list resource[:name]
+      aptkey :list resource[:name]
     end
 end
